@@ -5,8 +5,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.bahung.imageviewzoom.View.Fragment.ImageFragment;
 
-import static com.example.bahung.imageviewzoom.Adapter.ImageData.IMAGE_DRAWABLES;
-
 public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
     public ImagePagerAdapter(Fragment fragment) {
@@ -16,11 +14,11 @@ public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return IMAGE_DRAWABLES.length;
+        return ImageData.datas.size();
     }
 
     @Override
     public Fragment getItem(int position) {
-        return ImageFragment.newInstance(IMAGE_DRAWABLES[position]);
+        return ImageFragment.newInstance(ImageData.datas.get(position));
     }
 }

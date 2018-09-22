@@ -3,7 +3,6 @@ package com.example.bahung.imageviewzoom.View.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,10 +25,10 @@ public class ImageFragment extends Fragment {
 
     private static final String KEY_IMAGE_RES = "com.google.samples.gridtopager.key.imageRes";
 
-    public static ImageFragment newInstance(@DrawableRes int drawableRes) {
+    public static ImageFragment newInstance(String urlImage) {
         ImageFragment fragment = new ImageFragment();
         Bundle argument = new Bundle();
-        argument.putInt(KEY_IMAGE_RES, drawableRes);
+        argument.putString(KEY_IMAGE_RES, urlImage);
         fragment.setArguments(argument);
         return fragment;
     }
@@ -41,7 +40,7 @@ public class ImageFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_image, container, false);
 
         Bundle arguments = getArguments();
-        @DrawableRes int imageRes = arguments.getInt(KEY_IMAGE_RES);
+         String imageRes = arguments.getString(KEY_IMAGE_RES);
 
         // Just like we do when binding views at the grid, we set the transition name to be the string
         // value of the image res.
@@ -51,7 +50,7 @@ public class ImageFragment extends Fragment {
 
         // Load the image with Glide to prevent OOM error when the image drawables are very large.
         Glide.with(this)
-                .load(imageRes)
+                .load("http://103.216.112.194:4000"+imageRes)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable>

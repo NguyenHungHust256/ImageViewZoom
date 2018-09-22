@@ -24,7 +24,6 @@ import com.example.bahung.imageviewzoom.View.Fragment.ImagePagerFragment;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.example.bahung.imageviewzoom.Adapter.ImageData.IMAGE_DRAWABLES;
 
 /**
  * A fragment for displaying a grid of images.
@@ -66,7 +65,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
 
     @Override
     public int getItemCount() {
-        return IMAGE_DRAWABLES.length;
+        return ImageData.datas.size();
     }
 
 
@@ -151,14 +150,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
             setImage(adapterPosition);
             // Set the string value of the image resource as the unique transition name for the view.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                image.setTransitionName(String.valueOf(IMAGE_DRAWABLES[adapterPosition]));
+                image.setTransitionName(String.valueOf(ImageData.datas.get(adapterPosition)));
             }
         }
 
         void setImage(final int adapterPosition) {
             // Load the image with Glide to prevent OOM error when the image drawables are very large.
             requestManager
-                    .load(IMAGE_DRAWABLES[adapterPosition])
+                    .load("http://103.216.112.194:4000"+ImageData.datas.get(adapterPosition))
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model,
